@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WISHLIST</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="wishlist.css">
+</head>
+<style>
+
+    main{
+        background-color: rgb(177, 169, 184);
+        width: 70vw;
+        height: 90vh;
+        /* display: flex; */
+        margin-top: 00px;
+        justify-self: center;
+        align-self: center;
+    }
+    .page-title {
+        font-weight: 700;
+        font-size: 32px;
+        margin-left: 15%;
+        margin-top: 100px;
+    }
+</style>
+<body>
+<div class="header">
+    <h1 class=" text-center mt-4  " >E-Commerce Platform</h1>
+    <nav>
+        <ul>
+            <li> <a href="index.html">Home</a> </li>
+            <li> <a href=""></a> </li>
+            <li> <a href="">Products</a>  </li>
+            <li> <a href="">Contact</a> </li>
+
+            <li class=""> <a href="wishlist.html">WISHLIST(<span class="js-wishlist-quantity">0</span>)</a> </li>
+            <li class=""> <a href="cart.html">CART(<span class="js-cart-quantity">0</span>)</a>  </li>
+
+        </ul>
+    </nav>
+</div>
+
+<div class="page-title">Here is Your wish-list</div>
+<main>
+    <div class="cart-item-container">
+
+
+        <div class="cart-item-details-grid">
+            <img class="product-image"
+                 src="images/products/athletic-cotton-socks-6-pairs.jpg">
+
+            <div class="cart-item-details">
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-price">
+                    $10.90
+                </div>
+                <span class=" ">
+              Date added<span class="date"> June 23, 2022.</span>
+            </span>
+
+            </div>
+            <div>
+            <span class=" link-primary delete-item-link">
+              Delete
+            </span><br><br>
+                <span class=" link-primary add-to-cart-link">
+              Add-to-Cart
+            </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="cart-item-container">
+
+
+        <div class="cart-item-details-grid">
+            <img class="product-image"
+                 src="images/products/intermediate-composite-basketball.jpg">
+
+            <div class="cart-item-details">
+                <div class="product-name">
+                    Intermediate Size Basketball
+                </div>
+                <div class="product-price">
+                    $20.95
+                </div>
+                <span class=" ">
+            Date added<span class="date"> June 23, 2022.</span>
+          </span>
+            </div>
+
+            <div>
+          <span class=" link-primary delete-item-link">
+            Delete
+          </span><br><br>
+                <span class=" link-primary add-to-cart-link">
+            Add-to-Cart
+          </span>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="wishlist.js"></script>
+<script src="cart.js"></script>
+<script src="products.js"></script>
+</body>
+</html>
