@@ -18,13 +18,13 @@
   <h1 class=" text-center mt-4  " >E-Commerce Platform</h1>
   <nav>
     <ul>
-      <li> <a href="index.html">Home</a> </li>
+      <li> <a th:href="@{index}">Home</a> </li>
       <li> <a href=""></a> </li>
       <li> <a href="">Products</a>  </li>
       <li> <a href="">Contact</a> </li>
 
-      <li class=""> <a href="wishlist.html">WISHLIST(<span class="js-wishlist-quantity">0</span>)</a> </li>
-      <li class=""> <a href="cart.html">CART(<span class="js-cart-quantity">0</span>)</a>  </li>
+      <li class=""> <a th:href="@{wishlist}">WISHLIST(<span class="js-wishlist-quantity">0</span>)</a> </li>
+      <li class=""> <a th:href="@{cart}">CART(<span class="js-cart-quantity">0</span>)</a>  </li>
 
     </ul>
   </nav>
@@ -33,12 +33,54 @@
 
 <div class="main">
   <div class="products-grid js-products-grid">
+    <div class="product-container" th:each="product : ${products}" >
 
+      <button class="fav-btn js-fav-btn"  th:attr = "data-product-id=${product.id}">
+        <i class="bi bi-heart"></i>
+      </button>
+      <div class="product-image-container">
+        <img class="product-image" th:src="@{${product.imageUrl}}" alt="alt">
+<!--        <span th:text = "${product.imageUrl}"> </span>-->
+      </div>
+
+      <div class="product-name limit-text-to-2-lines" th:text="${product.name}" >
+
+      </div>
+
+      <div class="product-price" th:text="${product.price}">
+
+      </div>
+
+      <div class="product-quantity-container" >
+        <select class = "js-num" data-product-id="${product.id}" th:attr = "data-product-id=${product.id}">
+          <option selected value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+
+      <div class="product-spacer"></div>
+
+
+      <button class="add-to-cart-button button-primary js-add-to-cart"
+              data-product-id="${product.id}" th:attr = "data-product-id=${product.id}">
+        Add to Cart
+      </button>
+
+    </div>
   </div>
 </div>
-<script src="wishlist.js"></script>
-<script src="cart.js"></script>
-<script src="products.js"></script>
-<script src="home.js"></script>
+<script th:src="@{/js/wishlist.js}"></script>
+<script th:src="@{/js/cart.js}"></script>
+<!--<script src="products.js"></script>-->
+
+<script type="text/javascript" th:src="@{/js/home.js}"></script>
 </body>
 </html>

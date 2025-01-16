@@ -42,4 +42,15 @@ public class IndexController {
 //        }
         return "home";
     }
+    @GetMapping("/wishlist")
+    public String showWishlistPage(Model model){
+
+        return "wishlist";
+    }
+
+    @GetMapping("/cart")
+    public String showCartPage(Model model){
+
+        return "cart";
+    }
 }

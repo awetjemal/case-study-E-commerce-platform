@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WISHLIST</title>
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="wishlist.css">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/wishlist.css}">
 </head>
 <style>
 
@@ -30,13 +30,13 @@
     <h1 class=" text-center mt-4  " >E-Commerce Platform</h1>
     <nav>
         <ul>
-            <li> <a href="index.html">Home</a> </li>
+            <li> <a th:href="@{index}">Home</a> </li>
             <li> <a href=""></a> </li>
             <li> <a href="">Products</a>  </li>
             <li> <a href="">Contact</a> </li>
 
-            <li class=""> <a href="wishlist.html">WISHLIST(<span class="js-wishlist-quantity">0</span>)</a> </li>
-            <li class=""> <a href="cart.html">CART(<span class="js-cart-quantity">0</span>)</a>  </li>
+            <li class=""> <a th:href="@{wishlist}">WISHLIST(<span class="js-wishlist-quantity">0</span>)</a> </li>
+            <li class=""> <a th:href="@{cart}">CART(<span class="js-cart-quantity">0</span>)</a>  </li>
 
         </ul>
     </nav>
@@ -105,8 +105,8 @@
         </div>
     </div>
 </main>
-<script src="wishlist.js"></script>
-<script src="cart.js"></script>
-<script src="products.js"></script>
+<script th:src="@{/js/wishlist.js}"></script>
+<script th:src="@{/js/cart.js}"></script>
+<!--<script src="products.js"></script>-->
 </body>
 </html>
