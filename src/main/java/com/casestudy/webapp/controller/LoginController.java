@@ -3,11 +3,12 @@ package com.casestudy.webapp.controller;
 //import com.example.module309.form.SignupFormBean;
 import com.casestudy.webapp.config.Greeting;
 import com.casestudy.webapp.config.SignupFormBean;
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
+import com.casestudy.webapp.config.SignupFormClass;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 @Controller
 public class LoginController {
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
 
     // this get mapping is called by spring security when a secure resource is requested
     // needs to match the spring security configuration  .loginPage method
@@ -34,19 +34,19 @@ public class LoginController {
     }
 
     @GetMapping("/login/signUpForm")
-    public ModelAndView theSignupPage() {
-        ModelAndView response = new ModelAndView();
-        response.setViewName("login/signUpForm");
-        return response;
+    public String theSignupPage(Model model) {
+        model.addAttribute("signUpForm", new SignupFormClass());
+
+        return "login/signUpForm";
     }
 
-    @PostMapping("/login/signupSubmit")
+    @PostMapping("/login/signUpForm")
     public String signupSubmit(@ModelAttribute SignupFormBean signupFormBean, Model model) {
         model.addAttribute("signupFormBean", signupFormBean);
 
 //        System.out.println(signupFormBean.getFirstName() + " " + signupFormBean.getLastName() + " " + signupFormBean.getEmail());
 
-        return "/login/login";
+        return "/login/loginForm";
     }
     @GetMapping("/login/greeting")
     public String greetingForm(Model model) {
