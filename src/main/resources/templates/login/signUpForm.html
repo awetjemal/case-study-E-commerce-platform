@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Responsive Registration Form | CodingLab </title>
+<!--    <link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" th:href="@{/css/login/signUpForm.css}">
+</head>
+<body>
+<div class="container">
+    <!-- Title section -->
+    <div class="title">Registration</div>
+    <div class="content">
+        <!-- Registration form -->
+        <form method="post" th:action="@{/login/signupSubmit}" th:object="${signupFormBean}">
+<!--            <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">    -->
+            <div class="user-details">
+                <!-- Input for First Name -->
+                <div class="input-box">
+                    <span class="details">First Name</span>
+                    <input type="text" placeholder="Enter your first name" required id="firstName" name="firstName" >
+                </div>
+                <!-- Input for Last Name -->
+                <div class="input-box">
+                    <span class="details">Last Name</span>
+                    <input type="text" placeholder="Enter your last Name" required id="lastName" name="lastName" >
+                </div>
+                <!-- Input for Email -->
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="email" placeholder="Enter your email" required id="email" name="email" >
+                </div>
+                <!-- Input for Phone Number -->
+                <div class="input-box">
+                    <span class="details">Phone Number</span>
+                    <input type="text" placeholder="Enter your number" required id="phone" name="phone" >
+                </div>
+                <!-- Input for Password -->
+                <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="password" placeholder="Enter your password" required id="firstPassword" name="firstPassword" >
+                </div>
+                <!-- Input for Confirm Password -->
+                <div class="input-box">
+                    <span class="details">Confirm Password</span>
+                    <input type="password" placeholder="Confirm your password" required id="secondPassword" name="secondPassword" >
+                </div>
+                <!-- Input for Street address -->
+                <div class="input-box">
+                    <span class="details">Street</span>
+                    <input type="text" placeholder="street address" required id="street" name="street" >
+                </div>
+                <!-- Input for City -->
+                <div class="input-box">
+                    <span class="details">City</span>
+                    <input type="text" placeholder="city" required id="city" name="city" >
+                </div>
+                <!-- Input for State -->
+                <div class="input-box">
+                    <span class="details">State</span>
+                    <input type="text" placeholder="State" required id="state" name="state" >
+                </div>
+                <!-- Input for Zip code -->
+                <div class="input-box">
+                    <span class="details">Zip Code</span>
+                    <input type="text" placeholder="Zip code" required id="zipCode" name="zipCode" >
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="button">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

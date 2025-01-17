@@ -12,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
-//@RequestMapping("/")
+@RequestMapping("/home")
 public class IndexController {
 
     private final ProductService productService;
