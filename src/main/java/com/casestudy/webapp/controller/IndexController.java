@@ -1,4 +1,4 @@
-package com.casestudy.webapp;
+package com.casestudy.webapp.controller;
 
 import com.casestudy.webapp.model.Product;
 import com.casestudy.webapp.service.ProductService;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/home")
+//@RequestMapping("/home")
 public class IndexController {
 
     private final ProductService productService;

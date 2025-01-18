@@ -12,13 +12,14 @@
     <div class="title">
         Login Form
     </div>
-    <form action="#">
+    <form method = "POST" th:action="@{/login/login}" th:object="${loginForm}">
+<!--        <form method="post" th:action="@{/login/signUpForm}" th:object="${signUpForm}">-->
         <div class="field">
-            <input type="text" required>
+            <input type="text" required th:field="*{username}">
             <label>Email Address</label>
         </div>
         <div class="field">
-            <input type="password" required>
+            <input type="password" required th:field="*{password}">
             <label>Password</label>
         </div>
 
