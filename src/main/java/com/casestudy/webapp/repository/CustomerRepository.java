@@ -13,4 +13,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query("SELECT u.email FROM User u")
     List<String> findAllEmails();
 //        List<String> findAllCustomerEmails();
+    Customer findByEmail(String email);
 }

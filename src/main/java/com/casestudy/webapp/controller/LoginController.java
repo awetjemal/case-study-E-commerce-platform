@@ -5,7 +5,6 @@ import com.casestudy.webapp.config.Greeting;
 import com.casestudy.webapp.config.LogInFormBean;
 import com.casestudy.webapp.config.SignupFormBean;
 //import jakarta.validation.Valid;
-import com.casestudy.webapp.config.SignupFormClass;
 import com.casestudy.webapp.model.Customer;
 import com.casestudy.webapp.model.User;
 import com.casestudy.webapp.repository.CustomerRepository;
@@ -15,7 +14,6 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -24,7 +22,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller
@@ -61,7 +58,7 @@ public class LoginController {
             if(userInDatabase != null && passwordEncoder.matches(user.getPassword(), userInDatabase.getPassword()))
              {
                  authenticatedUserService.changeLoggedInUsername(session, user.getUsername(), user.getPassword());
-                 return "redirect:/";
+                 return "redirect:/home/index";
              }
         }
             return "login/loginForm";
@@ -111,11 +108,12 @@ public class LoginController {
     @GetMapping("/login/greeting")
     public String greetingForm(Model model) {
         model.addAttribute("greeting", new Greeting());
-        return "greeting";
+        return "home/greeting";
     }
     @PostMapping("/login/greeting")
     public String greetingSubmit(@ModelAttribute Greeting greeting, Model model) {
         model.addAttribute("greeting", greeting);
-        return "result";
+        return "home/result";
     }
+
 }

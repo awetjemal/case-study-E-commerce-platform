@@ -34,9 +34,9 @@ public class SecurityConfig {
         // 1) All URLS are considered open and we restrict the URLS we want to protect
         // 2) All URLS are restricted and we open the ones we want.
 
-        // this part of the configuration secures acutal URLS
-        // this is the list of URLS that require authentication to the website befroe the user can view the URL
-        // this works on the idea .. that all URLS are accessable to everyone excpt for the ones listed here
+        // this part of the configuration secures actual URLS
+        // this is the list of URLS that require authentication to the website before the user can view the URL
+        // this works on the idea .. that all URLS are accessible to everyone except for the ones listed here
         // this restriction is NOT including authorization it is only for authentication
 //        http.authorizeRequests()
 //                .requestMatchers(
@@ -46,8 +46,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests((authorize) -> authorize
                 // Require authentication for /customer/** endpoints
-                .requestMatchers("/customer/**").authenticated()
-                .requestMatchers("/employee/**").authenticated()
+                .requestMatchers("home/**").authenticated()
 
                 // Allow all other requests without authentication
                 .anyRequest().permitAll()

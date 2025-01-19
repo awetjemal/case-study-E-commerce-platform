@@ -6,6 +6,7 @@ const cartQuantity = document.querySelector('.js-cart-quantity');
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
+        //1. get totalQuantity from database 2. check if product is already in the cart
         let currentQuantity = 0;
         const productId = button.dataset.productId;
         let matchingItem;
@@ -15,6 +16,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
                 currentQuantity = node.value ;
             }
         });
+
         cart.forEach((item) => {
             if(productId === item.productId){
                 matchingItem = item;
