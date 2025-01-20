@@ -25,6 +25,11 @@
         </li>
     </ol>
 </div>
+<button th:data-name="${products}"
+        th:onclick="salute(this.getAttribute('data-name'))">
+    using data attribute
+</button>
+
 <script type="text/javascript" th:src="@{/js/actions.js}"></script>
 </body>
 </html>

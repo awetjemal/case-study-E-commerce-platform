@@ -112,8 +112,11 @@ public class LoginController {
     }
     @PostMapping("/login/greeting")
     public String greetingSubmit(@ModelAttribute Greeting greeting, Model model) {
-        model.addAttribute("greeting", greeting);
-        return "home/result";
+        model.addAttribute("greetingDoubledId", greeting.doubleId());
+        //save to database
+        //return ""
+//        return "home/result";
+        return "home/greeting";
     }
 
 }

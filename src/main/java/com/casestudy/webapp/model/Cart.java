@@ -20,10 +20,10 @@ public class Cart {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "customer_id", insertable = false, updatable = false)
+    @Column(name = "customer_id")
     private Integer customerId;
 
-    @Column(name = "product_id", insertable = false, updatable = false)
+    @Column(name = "product_id")
     private Integer productId;
 
     @Column(name = "quantity")

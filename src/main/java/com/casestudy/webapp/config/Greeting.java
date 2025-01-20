@@ -4,7 +4,7 @@ package com.casestudy.webapp.config;
 
 public class Greeting {
 
-    private long id;
+    private long id = 0;
     private String content;
 
     public long getId() {
@@ -23,4 +23,7 @@ public class Greeting {
         this.content = content;
     }
 
+    public Long doubleId(){
+        return (id*2) + 5;
+    }
 }

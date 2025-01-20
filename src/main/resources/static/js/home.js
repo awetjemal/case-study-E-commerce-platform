@@ -4,44 +4,60 @@ const wishlistQuantity = document.querySelector('.js-wishlist-quantity');
 const cartQuantity = document.querySelector('.js-cart-quantity');
 
 
+function displayMessage(message){
+    alert(message);
+}
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
         //1. get totalQuantity from database 2. check if product is already in the cart
         let currentQuantity = 0;
         const productId = button.dataset.productId;
         let matchingItem;
-        const numList  = document.querySelectorAll('.js-num');
-        numList.forEach((node) =>{
-            if(node.dataset.productId === productId){
-                currentQuantity = node.value ;
+        const numList = document.querySelectorAll('.js-num');
+        numList.forEach((node) => {
+            if (node.dataset.productId === productId) {
+                currentQuantity = node.value;
             }
         });
-
-        cart.forEach((item) => {
-            if(productId === item.productId){
-                matchingItem = item;
-            }
-        });
-        if(matchingItem){
-            matchingItem.quantity += Number(currentQuantity);
-        }else{
-            cart.push({
-                productId: productId,
-                quantity: Number(currentQuantity),
-            });
-        }
         let totalQuantity = 0;
-        cart.forEach((item) => {
-            totalQuantity += Number(item.quantity);
-        });
-        cartQuantity.innerHTML = totalQuantity;
-        console.log('# of items in a cart: ' + totalQuantity);
-        console.log(cart);
-        // console.log("currentQuantity selected is  =  " + currentQuantity);
+        // Data to be sent to the backend
+        const cartItem = {
+            productId: productId,
+            quantity: Number(currentQuantity),
+        };
+
+        fetch("/cart/addToCart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(cartItem)
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                totalQuantity = data.totalQuantity;
+                console.log('Success:', data.totalQuantity);
+                cartQuantity.innerHTML = totalQuantity;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
 
     });
 
+        // cart.forEach((item) => {
+        //     totalQuantity += Number(item.quantity);
+        // });
+
+        // displayMessage(productId + " product Id was just added to cart");
+        // console.log('# of items in a cart: ' + totalQuantity);
+        // console.log(cart);
+        // console.log("currentQuantity selected is  =  " + currentQuantity);
+
+
 });
+
 document.querySelectorAll('.js-fav-btn').forEach((button) => {
     button.addEventListener('click', () => {
 

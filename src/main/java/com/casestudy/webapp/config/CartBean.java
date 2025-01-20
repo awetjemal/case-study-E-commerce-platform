@@ -1,16 +1,17 @@
 package com.casestudy.webapp.config;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Data
 @Getter
 @Setter
 @ToString
-public class cartBean {
-    private List<Integer> ids = new ArrayList<>();
-    private List<Integer> cartQuantities = new ArrayList<>();
+public class CartBean {
+    private Integer productId;
+    private Integer quantity;
 }

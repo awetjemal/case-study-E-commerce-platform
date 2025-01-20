@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 
-    List<Cart> findByCustomerId(int customerId);
+    List<Cart> findByCustomerId(Integer customerId);
 
 //    @Query(value = "SELECT * FROM users WHERE last_name = :lastName", nativeQuery = true)
 //    List<User> findByLastName(String lastName);
