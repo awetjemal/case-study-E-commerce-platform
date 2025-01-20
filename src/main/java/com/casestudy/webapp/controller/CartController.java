@@ -1,6 +1,6 @@
 package com.casestudy.webapp.controller;
 
-import com.casestudy.webapp.config.CartBean;
+import com.casestudy.webapp.combinedModels.CartBean;
 import com.casestudy.webapp.model.Cart;
 import com.casestudy.webapp.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;

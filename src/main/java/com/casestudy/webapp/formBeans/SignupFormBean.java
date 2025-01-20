@@ -1,4 +1,4 @@
-package com.casestudy.webapp.config;
+package com.casestudy.webapp.formBeans;
 
 
 import jakarta.validation.constraints.NotEmpty;

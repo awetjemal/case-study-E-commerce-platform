@@ -8,7 +8,9 @@
     <link rel="stylesheet" th:href="@{/css/cart.css}">
 </head>
 <style>
-
+    body{
+        background-color: #999999;
+    }
     main{
         background-color: rgb(186, 180, 192);
         width: 90vw;
@@ -58,30 +60,30 @@
 
         <div class="checkout-grid">
             <div class="order-summary">
-                <div class="cart-item-container">
+                <div class="cart-item-container" th:each="product : ${cartBeans}"  th:attr = "data-product-id=${product.productId}">
                     <div class="delivery-date">
                         Delivery date: Tuesday, June 21
                     </div>
 
                     <div class="cart-item-details-grid">
                         <img class="product-image"
-                             src="../images/products/athletic-cotton-socks-6-pairs.jpg">
+                             th:src="@{${'../' + product.productImageUrl}}">
 
                         <div class="cart-item-details">
-                            <div class="product-name">
-                                Black and Gray Athletic Cotton Socks - 6 Pairs
+                            <div class="product-name" th:text="${product.productName}">
+
                             </div>
-                            <div class="product-price">
-                                $10.90
+                            <div class="product-price" th:text="${product.productPrice}">
+
                             </div>
-                            <div class="product-quantity">
+                            <div class="product-quantity" >
                   <span>
-                    Quantity: <span class="quantity-label">2</span>
+                    Quantity: <span class="quantity-label" th:text="${product.quantity}"></span>
                   </span>
-                                <span class="update-quantity-link link-primary">
+                                <span class="update-quantity-link link-primary" th:attr = "data-product-id=${product.productId}">
                     Update
                   </span>
-                                <span class="delete-quantity-link link-primary">
+                                <span class="delete-quantity-link link-primary" th:attr = "data-product-id=${product.productId}">
                     Delete
                   </span>
                             </div>

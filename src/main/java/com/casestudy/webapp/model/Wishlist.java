@@ -23,14 +23,14 @@ public class Wishlist {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "customer_id", nullable = false)
+//    private Customer customer;
 
-    @Column(name = "product_id", insertable = false, updatable = false)
+    @Column(name = "product_id")
     private Integer productId;
 
-    @Column(name = "customer_id", insertable = false, updatable = false)
+    @Column(name = "customer_id")
     private Integer customerId;
 
     @Column(name = "date_added",  columnDefinition = "DATE")

@@ -1,12 +1,15 @@
 package com.casestudy.webapp.controller;
 
+import com.casestudy.webapp.combinedModels.CartBean;
 import com.casestudy.webapp.model.Cart;
 import com.casestudy.webapp.model.Customer;
 import com.casestudy.webapp.model.Product;
+import com.casestudy.webapp.model.Wishlist;
 import com.casestudy.webapp.repository.CustomerRepository;
 import com.casestudy.webapp.service.CartService;
 import com.casestudy.webapp.service.CustomerService;
 import com.casestudy.webapp.service.ProductService;
+import com.casestudy.webapp.service.WishListService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -27,7 +30,7 @@ public class IndexController {
     @Autowired
     private CartService cartService;
     @Autowired
-    private CustomerService customerService;
+    private WishListService wishListService;
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -51,9 +54,12 @@ public class IndexController {
     {
         List<Product> products = productService.getAllProducts();
         List<Cart> cartItems = cartService.getCartItems();
+//        List<Wishlist> wishlistItems = wishListService.getAllInWishlist();
+        List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
         Cart cartObject = new Cart();
         model.addAttribute("products", products);
         model.addAttribute("cartItems", cartItems);
+        model.addAttribute("wishListedProducts", wishListedProducts);
         model.addAttribute("cartObject", cartObject);
 //        for (Product p : products) {
 //            System.out.println(p.getPrice() + " - " + p.getName() + " "+ p.getImageUrl() + " - " + p.getKeyWords());
@@ -71,12 +77,16 @@ public class IndexController {
     }
     @GetMapping("home/wishlist")
     public String showWishlistPage(Model model){
+        List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
+        model.addAttribute("wishListedProducts", wishListedProducts);
 
         return "home/wishlist";
     }
 
     @GetMapping("home/cart")
     public String showCartPage(Model model){
+        List<CartBean> cartBeans = cartService.getCartBeansInCart();
+        model.addAttribute("cartBeans", cartBeans);
 
         return "home/cart";
     }

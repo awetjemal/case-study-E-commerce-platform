@@ -34,9 +34,7 @@
 <div class="main">
   <div class="products-grid js-products-grid">
     <div class="product-container" th:each="product : ${products}" >
-    <form >
-     <!-- <form th:action="@{/login/greeting}" th:object="${greeting}" method="post">    -->
-    </form>
+
       <button class="fav-btn js-fav-btn"  th:attr = "data-product-id=${product.id}">
         <i class="bi bi-heart"></i>
       </button>

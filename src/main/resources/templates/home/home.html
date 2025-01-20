@@ -19,13 +19,13 @@
     <li th:each="item : ${products}" th:text="${item.imageUrl}"> </li>
 </ol>
 <div>
-    <ol>
-        <li th:each="item : ${products}" th:text="${item.id}">
+    <ul>
+        <li th:each="item : ${wishListedProducts}" th:text="${item.name}">
 
         </li>
-    </ol>
+    </ul>
 </div>
-<button th:data-name="${products}"
+<button th:data-name="${wishListedProducts}"
         th:onclick="salute(this.getAttribute('data-name'))">
     using data attribute
 </button>

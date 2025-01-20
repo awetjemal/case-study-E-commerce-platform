@@ -44,19 +44,16 @@
 
 <div class="page-title">Here is Your wish-list</div>
 <main>
-    <div class="cart-item-container">
-
-
+    <div class="cart-item-container" th:each="product : ${wishListedProducts}"  th:attr = "data-product-id=${product.id}">
         <div class="cart-item-details-grid">
-            <img class="product-image"
-                 src="../images/products/athletic-cotton-socks-6-pairs.jpg">
-
+            <img class="product-image" th:src="@{${'../' + product.imageUrl}}">
+                    <!--th:src="@{${'../'+product.imageUrl}}"-->
             <div class="cart-item-details">
-                <div class="product-name">
-                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                <div class="product-name" th:text="${product.name}">
+
                 </div>
-                <div class="product-price">
-                    $10.90
+                <div class="product-price" th:text="${product.price}">
+
                 </div>
                 <span class=" ">
               Date added<span class="date"> June 23, 2022.</span>
@@ -64,10 +61,10 @@
 
             </div>
             <div>
-            <span class=" link-primary delete-item-link">
+            <span class=" link-primary delete-item-link" th:attr = "data-product-id=${product.id}">
               Delete
             </span><br><br>
-                <span class=" link-primary add-to-cart-link">
+                <span class=" link-primary add-to-cart-link" th:attr = "data-product-id=${product.id}">
               Add-to-Cart
             </span>
             </div>
@@ -75,35 +72,7 @@
 
     </div>
 
-    <div class="cart-item-container">
 
-
-        <div class="cart-item-details-grid">
-            <img class="product-image"
-                 src="../images/products/intermediate-composite-basketball.jpg">
-
-            <div class="cart-item-details">
-                <div class="product-name">
-                    Intermediate Size Basketball
-                </div>
-                <div class="product-price">
-                    $20.95
-                </div>
-                <span class=" ">
-            Date added<span class="date"> June 23, 2022.</span>
-          </span>
-            </div>
-
-            <div>
-          <span class=" link-primary delete-item-link">
-            Delete
-          </span><br><br>
-                <span class=" link-primary add-to-cart-link">
-            Add-to-Cart
-          </span>
-            </div>
-        </div>
-    </div>
 </main>
 <script th:src="@{/js/wishlist.js}"></script>
 <script th:src="@{/js/cart.js}"></script>

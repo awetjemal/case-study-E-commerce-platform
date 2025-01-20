@@ -1,7 +1,9 @@
 package com.casestudy.webapp.service;
 
+import com.casestudy.webapp.combinedModels.CartBean;
 import com.casestudy.webapp.model.Cart;
 import com.casestudy.webapp.model.Customer;
+import com.casestudy.webapp.model.Product;
 import com.casestudy.webapp.repository.CartRepository;
 import com.casestudy.webapp.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,8 @@ public class CartService {
     private CartRepository cartRepository;
     @Autowired
     private CustomerService customerService;
-
+    @Autowired
+    private ProductService productService;
 
     //get the cart belonging to the current user logged in ie, current customer
     public List<Cart> getCartItems() {
@@ -26,7 +29,32 @@ public class CartService {
         //get list of cart entries for that customer
         return cartRepository.findByCustomerId(customerId);
     }
-    //get total number of items sitting in the cart
+    //get all products-detail currently sitting in the cart.
+    public List<Product> getAllProductsInCart() {
+        List<Cart> carts = getCartItems();
+        List<Product> products = new ArrayList<>();
+        for (Cart cart : carts) {
+            products.add(productService.getProductById(cart.getProductId()));
+        }
+        return products;
+    }
+    //get and return CartBean collections to be passed to the cart page
+    public List<CartBean> getCartBeansInCart() {
+        List<Cart> carts = getCartItems();
+        List<Product> products = getAllProductsInCart();
+        List<CartBean> cartBeans = new ArrayList<>();
+        for(int i = 0; i < carts.size(); i++) {
+            CartBean cartBean = new CartBean();
+            cartBean.setProductId(carts.get(i).getProductId());
+            cartBean.setQuantity(carts.get(i).getQuantity());
+            cartBean.setProductName(products.get(i).getName());
+            cartBean.setProductPrice(products.get(i).getPrice());
+            cartBean.setProductImageUrl(products.get(i).getImageUrl());
+            cartBeans.add(cartBean);
+        }
+        return cartBeans;
+    }
+    //get total count of items sitting in the cart
     public Integer cartCount() {
         List<Cart> carts = getCartItems();
         Integer count = 0;

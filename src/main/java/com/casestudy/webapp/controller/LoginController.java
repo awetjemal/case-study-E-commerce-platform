@@ -1,9 +1,9 @@
 package com.casestudy.webapp.controller;
 
 //import com.example.module309.form.SignupFormBean;
-import com.casestudy.webapp.config.Greeting;
-import com.casestudy.webapp.config.LogInFormBean;
-import com.casestudy.webapp.config.SignupFormBean;
+import com.casestudy.webapp.formBeans.Greeting;
+import com.casestudy.webapp.formBeans.LogInFormBean;
+import com.casestudy.webapp.formBeans.SignupFormBean;
 //import jakarta.validation.Valid;
 import com.casestudy.webapp.model.Customer;
 import com.casestudy.webapp.model.User;

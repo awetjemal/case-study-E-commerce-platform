@@ -13,4 +13,6 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 
 //    @Query(value = "SELECT * FROM users WHERE last_name = :lastName", nativeQuery = true)
 //    List<User> findByLastName(String lastName);
+
+    Cart deleteCartByCustomerIdAndProductId(Integer customerId, Integer productId);
 }

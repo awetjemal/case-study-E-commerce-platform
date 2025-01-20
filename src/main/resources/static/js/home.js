@@ -1,7 +1,6 @@
-
 const grid = document.querySelector('.js-products-grid');
-const wishlistQuantity = document.querySelector('.js-wishlist-quantity');
-const cartQuantity = document.querySelector('.js-cart-quantity');
+// const wishlistQuantity = document.querySelector('.js-wishlist-quantity');
+// const cartQuantity = document.querySelector('.js-cart-quantity');
 
 
 function displayMessage(message){
@@ -12,7 +11,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         //1. get totalQuantity from database 2. check if product is already in the cart
         let currentQuantity = 0;
         const productId = button.dataset.productId;
-        let matchingItem;
+
         const numList = document.querySelectorAll('.js-num');
         numList.forEach((node) => {
             if (node.dataset.productId === productId) {
@@ -46,33 +45,43 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
     });
 
-        // cart.forEach((item) => {
-        //     totalQuantity += Number(item.quantity);
-        // });
-
-        // displayMessage(productId + " product Id was just added to cart");
-        // console.log('# of items in a cart: ' + totalQuantity);
-        // console.log(cart);
-        // console.log("currentQuantity selected is  =  " + currentQuantity);
-
-
 });
 
 document.querySelectorAll('.js-fav-btn').forEach((button) => {
     button.addEventListener('click', () => {
 
         const productId = button.dataset.productId;
-        console.log("Product Id = " + productId);
-        if(wishlist.includes(productId)){
-            wishlist.pop(productId);
-            button.innerHTML = `<i class="bi bi-heart"></i>`;
-            wishlistQuantity.innerHTML = wishlist.length;
-        }else{
-            wishlist.push(productId);
-            button.innerHTML = `<i class="bi bi-heart-fill"></i>`;
-            wishlistQuantity.innerHTML = wishlist.length;
+        const wishlistItem = {
+            productId: productId
+        };
+        let totalInWishlist = 0;
 
-        }
+        fetch("/wishlist/updateWishlist", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(wishlistItem)
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                totalInWishlist= data.totalInWishlist;
+                console.log('totalInWishlist:', data.totalInWishlist);
+                console.log('Status: ', data.status);
+                console.log('message: ', data.message);
+                wishlistQuantity.innerHTML = totalInWishlist;
+                if(data.status === "added"){
+                    button.innerHTML = `<i class="bi bi-heart-fill"></i>`;
+                }else if(data.status === "removed"){
+                    button.innerHTML = `<i class="bi bi-heart"></i>`;
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        // console.log("Product Id = " + productId);
+
 
         // document.querySelector('.js-cart-quantity').innerHTML = totalQuantity;
         // console.log('# of items in a cart: ' + totalQuantity);

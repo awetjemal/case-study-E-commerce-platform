@@ -56,8 +56,8 @@ public class Customer {
             cascade = CascadeType.ALL)
     private Set<History> histories;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Set<Wishlist> wishlists;
+//    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+//    private Set<Wishlist> wishlists;
 
 }
