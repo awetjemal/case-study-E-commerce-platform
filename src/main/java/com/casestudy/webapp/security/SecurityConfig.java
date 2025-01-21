@@ -46,6 +46,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authorize) -> authorize
                 // Require authentication for /customer/** endpoints
                 .requestMatchers("home/**").authenticated()
+                .requestMatchers("cart/**").authenticated()
+                .requestMatchers("wishlist/**").authenticated()
 
                 // Allow all other requests without authentication
                 .anyRequest().permitAll()
@@ -67,7 +69,7 @@ public class SecurityConfig {
                 .logoutUrl("/login/logout")
                 // where does the user go after they have been logged out
                 // this is a URL that we have implemented somewhere in our project or controllers
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login/logoutForm")
                 // extra security and delete these cookies when logging out
                 .deleteCookies("username", "JSESSIONID"));
 

@@ -1,5 +1,6 @@
 const cart = [];
 const cartQuantityC = document.querySelector('.js-cart-quantity');
+const cartQuantituCK = document.getElementById('cartQuantityCK');
 document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
     link.addEventListener('click', () => {
         // console.log('clicked the delete link');
@@ -34,6 +35,7 @@ document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
 
                 if(data.status === "removed"){
                     cartQuantityC.innerHTML = totalItemsInCart;
+                    cartQuantituCK.innerHTML = totalItemsInCart;
                     const containerList = document.querySelectorAll('.cart-item-container');
                     containerList.forEach((node) => {
                         if (node.dataset.productId === productId) {

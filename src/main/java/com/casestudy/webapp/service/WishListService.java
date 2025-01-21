@@ -28,6 +28,14 @@ public class WishListService {
         //get list of cart entries for that customer
         return wishlistRepository.findByCustomerId(customerId);
     }
+    public List<Integer> getAllProductIdsInWishlist(){
+        List<Integer> productIds = new ArrayList<>();
+        List<Product> wishListedProducts = getAllProductsInWishlist();
+        for(Product product : wishListedProducts){
+            productIds.add(product.getId());
+        }
+        return productIds;
+    }
     public List<Product> getAllProductsInWishlist(){
         List<Wishlist> wishlists = getAllInWishlist();
         List<Product> products = new ArrayList<>();

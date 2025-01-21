@@ -1,7 +1,6 @@
 package com.casestudy.webapp.controller;
 
 //import com.example.module309.form.SignupFormBean;
-import com.casestudy.webapp.formBeans.Greeting;
 import com.casestudy.webapp.formBeans.LogInFormBean;
 import com.casestudy.webapp.formBeans.SignupFormBean;
 //import jakarta.validation.Valid;
@@ -105,18 +104,11 @@ public class LoginController {
 
         return "/login/loginForm";
     }
-    @GetMapping("/login/greeting")
-    public String greetingForm(Model model) {
-        model.addAttribute("greeting", new Greeting());
-        return "home/greeting";
+    @GetMapping("/login/logoutForm")
+    public String displayLogoutPage(HttpSession session) {
+
+        return "login/logoutForm";
     }
-    @PostMapping("/login/greeting")
-    public String greetingSubmit(@ModelAttribute Greeting greeting, Model model) {
-        model.addAttribute("greetingDoubledId", greeting.doubleId());
-        //save to database
-        //return ""
-//        return "home/result";
-        return "home/greeting";
-    }
+
 
 }

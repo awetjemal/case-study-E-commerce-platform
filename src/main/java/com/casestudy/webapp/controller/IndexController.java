@@ -2,12 +2,9 @@ package com.casestudy.webapp.controller;
 
 import com.casestudy.webapp.combinedModels.CartBean;
 import com.casestudy.webapp.model.Cart;
-import com.casestudy.webapp.model.Customer;
 import com.casestudy.webapp.model.Product;
-import com.casestudy.webapp.model.Wishlist;
 import com.casestudy.webapp.repository.CustomerRepository;
 import com.casestudy.webapp.service.CartService;
-import com.casestudy.webapp.service.CustomerService;
 import com.casestudy.webapp.service.ProductService;
 import com.casestudy.webapp.service.WishListService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -43,7 +39,7 @@ public class IndexController {
     {
         List<Product> products = productService.getAllProducts();
         Integer cartCount = cartService.cartCount();
-        List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
+        List<Integer> wishListedProducts = wishListService.getAllProductIdsInWishlist();
         model.addAttribute("cartCount", cartCount);
         model.addAttribute("products", products);
         model.addAttribute("wishListedProducts", wishListedProducts);
@@ -54,31 +50,19 @@ public class IndexController {
         return "home/index";
     }
 
-    @GetMapping("home/home")   // either type '/' or index
-    public String showHomePage(Model model)
-    {
+    @GetMapping("home/history")   // either type '/' or index
+    public String showHomePage(Model model) {
+
+        Integer cartCount = cartService.cartCount();
+        model.addAttribute("cartCount", cartCount);
         List<Product> products = productService.getAllProducts();
-        List<Cart> cartItems = cartService.getCartItems();
-//        List<Wishlist> wishlistItems = wishListService.getAllInWishlist();
-        List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
-        Cart cartObject = new Cart();
         model.addAttribute("products", products);
+        List<Cart> cartItems = cartService.getCartItems();
         model.addAttribute("cartItems", cartItems);
+        List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
         model.addAttribute("wishListedProducts", wishListedProducts);
-        model.addAttribute("cartObject", cartObject);
-//        for (Product p : products) {
-//            System.out.println(p.getPrice() + " - " + p.getName() + " "+ p.getImageUrl() + " - " + p.getKeyWords());
-//        }
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("Current auth.getName(): " + auth.getName()); // => returns username/email
-//        System.out.println("Current auth.getPrincipal(): " + auth.getPrincipal());
-//        System.out.println("Current auth.getCredentials(): " + auth.getCredentials());
-//        System.out.println("Current auth.getDetails(): " + auth.getDetails());
-//        Customer customer = customerRepository.findByEmail(auth.getName());
 
-
-
-        return "home/home";
+        return "home/history";
     }
     @GetMapping("home/wishlist")
     public String showWishlistPage(Model model){
