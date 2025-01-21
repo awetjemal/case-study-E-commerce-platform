@@ -2,6 +2,8 @@ package com.casestudy.webapp.repository;
 
 import com.casestudy.webapp.model.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,5 +16,7 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 //    @Query(value = "SELECT * FROM users WHERE last_name = :lastName", nativeQuery = true)
 //    List<User> findByLastName(String lastName);
 
-    Cart deleteCartByCustomerIdAndProductId(Integer customerId, Integer productId);
+    @Modifying
+    @Query(value = "delete from cart where product_id = :productId and customer_id = :customerId", nativeQuery = true)
+    void deleteCartByCustomerIdAndProductId(Integer customerId, Integer productId);
 }

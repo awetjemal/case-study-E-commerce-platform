@@ -35,8 +35,8 @@
             <li> <a href="">Products</a>  </li>
             <li> <a href="">Contact</a> </li>
 
-            <li class=""> <a th:href="@{wishlist}">WISHLIST(<span class="js-wishlist-quantity">0</span>)</a> </li>
-            <li class=""> <a th:href="@{cart}">CART(<span class="js-cart-quantity">0</span>)</a>  </li>
+            <li class=""> <a th:href="@{wishlist}">WISHLIST(<span class="js-wishlist-quantity" th:text="${wishListedProducts.size()}">0</span>)</a> </li>
+            <li class=""> <a th:href="@{cart}">CART(<span class="js-cart-quantity" th:text="${cartCount}"></span>)</a>  </li>
 
         </ul>
     </nav>
@@ -75,7 +75,7 @@
 
 </main>
 <script th:src="@{/js/wishlist.js}"></script>
-<script th:src="@{/js/cart.js}"></script>
+<!--<script th:src="@{/js/cart.js}"></script>-->
 <!--<script src="products.js"></script>-->
 </body>
 </html>

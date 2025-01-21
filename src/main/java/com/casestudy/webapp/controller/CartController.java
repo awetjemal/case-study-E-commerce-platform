@@ -42,4 +42,25 @@ public class CartController {
          } return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 
+    @PostMapping("/cart/removeFromCart")
+    public ResponseEntity<Map<String, String>> removeFromCart(@RequestBody  CartBean cartBean) {
+        // Logic to update database goes here
+
+         cartService.removeSingleItem(cartBean.getProductId());
+        Integer totalItemsInCart;
+        Map<String, String> response = new HashMap<>();
+
+        boolean success = (!cartService.isInCart(cartBean.getProductId()));
+
+        if (success) {
+            totalItemsInCart = cartService.cartCount();
+            response.put("totalItemsInCart", "" + totalItemsInCart);
+            response.put("status", "removed");
+            response.put("message", "Update Success");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "Update failed to remove");
+        } return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+
 }

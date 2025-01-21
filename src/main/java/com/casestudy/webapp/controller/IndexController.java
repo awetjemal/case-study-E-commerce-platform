@@ -42,7 +42,12 @@ public class IndexController {
     public String showIndexPage(Model model)
     {
         List<Product> products = productService.getAllProducts();
+        Integer cartCount = cartService.cartCount();
+        List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
+        model.addAttribute("cartCount", cartCount);
         model.addAttribute("products", products);
+        model.addAttribute("wishListedProducts", wishListedProducts);
+
 //        for (Product p : products) {
 //            System.out.println(p.getPrice() + " - " + p.getName() + " "+ p.getImageUrl() + " - " + p.getKeyWords());
 //        }
@@ -78,6 +83,8 @@ public class IndexController {
     @GetMapping("home/wishlist")
     public String showWishlistPage(Model model){
         List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
+        Integer cartCount = cartService.cartCount();
+        model.addAttribute("cartCount", cartCount);
         model.addAttribute("wishListedProducts", wishListedProducts);
 
         return "home/wishlist";
@@ -86,7 +93,11 @@ public class IndexController {
     @GetMapping("home/cart")
     public String showCartPage(Model model){
         List<CartBean> cartBeans = cartService.getCartBeansInCart();
+        List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
+        Integer cartCount = cartService.cartCount();
         model.addAttribute("cartBeans", cartBeans);
+        model.addAttribute("cartCount", cartCount);
+        model.addAttribute("wishListedProducts", wishListedProducts);
 
         return "home/cart";
     }

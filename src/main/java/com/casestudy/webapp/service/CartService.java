@@ -6,6 +6,7 @@ import com.casestudy.webapp.model.Customer;
 import com.casestudy.webapp.model.Product;
 import com.casestudy.webapp.repository.CartRepository;
 import com.casestudy.webapp.repository.CustomerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service
 public class CartService {
     @Autowired
@@ -88,6 +90,19 @@ public class CartService {
     }
 
     //removeSingleItem from the cart after customer deleted the item from the cart
+    public void removeSingleItem(Integer productId) {
+        Integer customerId = customerService.getLoggedInCustomerId();
+        cartRepository.deleteCartByCustomerIdAndProductId(customerId, productId);
+    }
+    public boolean isInCart(Integer productId) {
+        List<Cart> cartItems = getCartItems();
+        for (Cart cart : cartItems) {
+            if(cart.getProductId() == productId){
+                return true;
+            }
+        }
+        return false;
+    }
     // removeAllItem from the cart (one-by-one)and addToOrderDetail table along Order# after customer placed an order
     //getTotalItems in the cart for current user/customer
 
