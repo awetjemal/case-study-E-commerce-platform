@@ -14,9 +14,11 @@ HTML, CSS, Javascript, Bootstrap, SQL, MySQL RDBMS, Java, JSP, Thymeleaf, AJAX, 
 
 ![image](https://github.com/user-attachments/assets/e74e1ce1-abb0-406c-8f5a-2c9d894e5cc6)
 
-![image](https://github.com/user-attachments/assets/0ac77a70-3904-46bb-9507-f07bacba98b5)
+![image](https://github.com/user-attachments/assets/0f1f7244-254e-4e5f-9c7b-0de8c00b99cf)
 
-![image](https://github.com/user-attachments/assets/a9dbd608-fa63-468a-b9d1-55a1dfe1bfbd)
+![image](https://github.com/user-attachments/assets/1b3aba9a-5960-46d1-8088-b5eb781c7243)
+
+
 
 
 
