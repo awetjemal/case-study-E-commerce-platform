@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>History of your Orders Placed</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <link th:href="@{/css/home.css}" rel="stylesheet" />
 </head>
 <body>
@@ -24,9 +29,26 @@
 </div>
 <div class="header-2 ">
     <h2 class="text-center mt-4">History of Your Orders placed</h2>
-</div>
+</div >
 
+<!--<div id="header-2"></div>-->
+<table border="1" class="table mt-5">
+    <tr>
+        <th>Order Id</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price Each</th>
 
+    </tr>
+
+    <tr th:each="item : ${historyBeans}">
+            <td th:text="${item.orderId}"></td>
+            <td th:text="${item.productName}"></td>
+            <td th:text="${item.quantityOrdered}"></td>
+            <td th:text="${item.priceEach}"></td>
+    </tr>
+
+</table>
 
 
 <script type="text/javascript" th:src="@{/js/history.js}"></script>

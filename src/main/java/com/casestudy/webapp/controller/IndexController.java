@@ -1,6 +1,7 @@
 package com.casestudy.webapp.controller;
 
 import com.casestudy.webapp.combinedModels.CartBean;
+import com.casestudy.webapp.combinedModels.HistoryBean;
 import com.casestudy.webapp.model.Cart;
 import com.casestudy.webapp.model.Order;
 import com.casestudy.webapp.model.OrderDetail;
@@ -21,16 +22,14 @@ import java.util.List;
 @Controller
 //@RequestMapping("/home")
 public class IndexController {
-
+    @Autowired
     private final ProductService productService;
     @Autowired
     private CartService cartService;
     @Autowired
     private WishListService wishListService;
-
     @Autowired
     private CustomerService customerService;
-
     @Autowired
     private OrderService orderService;
     @Autowired
@@ -59,15 +58,16 @@ public class IndexController {
 
     @GetMapping("home/history")   // either type '/' or index
     public String showHomePage(Model model) {
-
-        Integer cartCount = cartService.cartCount();
-        model.addAttribute("cartCount", cartCount);
-        List<Product> products = productService.getAllProducts();
-        model.addAttribute("products", products);
-        List<Cart> cartItems = cartService.getCartItems();
-        model.addAttribute("cartItems", cartItems);
+        List<HistoryBean> historyBeans = orderDetailService.getAllInHistoryForCurrentlyLoggedInUser();
+        model.addAttribute("historyBeans", historyBeans);
+        List<CartBean> cartBeans = cartService.getCartBeansInCart();
         List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
+        List<Double> cartTotals = cartService.getCartTotals("Option1");
+        Integer cartCount = cartService.cartCount();
+        model.addAttribute("cartBeans", cartBeans);
+        model.addAttribute("cartCount", cartCount);
         model.addAttribute("wishListedProducts", wishListedProducts);
+        model.addAttribute("cartTotals", cartTotals);
 
         return "home/history";
     }

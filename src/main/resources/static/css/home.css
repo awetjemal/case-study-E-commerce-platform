@@ -208,7 +208,8 @@ nav a {
 }
 .header-2{
     position: fixed;
-    top: 100px;
+    top: 60px;
+    margin-bottom: 20px;
 }
 .fav-btn{
     border: none;
