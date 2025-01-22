@@ -78,10 +78,12 @@ public class IndexController {
     public String showCartPage(Model model){
         List<CartBean> cartBeans = cartService.getCartBeansInCart();
         List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
+        List<Double> cartTotals = cartService.getCartTotals("Option1");
         Integer cartCount = cartService.cartCount();
         model.addAttribute("cartBeans", cartBeans);
         model.addAttribute("cartCount", cartCount);
         model.addAttribute("wishListedProducts", wishListedProducts);
+        model.addAttribute("cartTotals", cartTotals);
 
         return "home/cart";
     }

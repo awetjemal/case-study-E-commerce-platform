@@ -33,6 +33,13 @@ public class Product {
     @Column(name = "key_words")
     private String keyWords;
 
+            public Product(String imageUrl, String name, double v, String s) {
+                this.imageUrl = imageUrl;
+                this.name = name;
+                this.price = v;
+                this.keyWords = s;
+            }
+
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<OrderDetail> orderDetails;

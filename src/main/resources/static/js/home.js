@@ -3,9 +3,6 @@ const grid = document.querySelector('.js-products-grid');
 // const cartQuantity = document.querySelector('.js-cart-quantity');
 
 
-function displayMessage(message){
-    alert(message);
-}
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
         //1. get totalQuantity from database 2. check if product is already in the cart
@@ -23,6 +20,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         const cartItem = {
             productId: productId,
             quantity: Number(currentQuantity),
+            shippingOption: "Option1"
         };
 
         fetch("/cart/addToCart", {
@@ -37,6 +35,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
                 totalQuantity = data.totalQuantity;
                 console.log('Success:', data.totalQuantity);
+
                 cartQuantity.innerHTML = totalQuantity;
             })
             .catch((error) => {

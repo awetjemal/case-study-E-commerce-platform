@@ -56,6 +56,40 @@ public class CartService {
         }
         return cartBeans;
     }
+    //calculate and return total value in cart before tax
+    public List<Double> getCartTotals(String shippingOption) {
+        List<Double> cartTotals = new ArrayList<>();
+        double totalBeforeShippingAndTax = 0.0;
+        List<CartBean> cartBeans = getCartBeansInCart();
+        for(CartBean cartBean : cartBeans) {
+            totalBeforeShippingAndTax += (cartBean.getProductPrice() * cartBean.getQuantity());
+        }
+//         double roundedNumber = Math.round(number * 100.0) / 100.0;
+        cartTotals.add(Math.round(totalBeforeShippingAndTax * 100.0) / 100.0);
+
+        double shippingFee = 0.0;
+        if(cartCount() == 0){
+            shippingFee = 0.00;
+        }else if(shippingOption.equals("Option1")) {
+            shippingFee = 4.99;
+        }else if(shippingOption.equals("Option2")) {
+            shippingFee = 9.99;
+        }else if(shippingOption.equals("Option0")) {
+            shippingFee = 0.00;
+        }
+
+        cartTotals.add(shippingFee);
+        double totalBeforeTax = shippingFee + totalBeforeShippingAndTax;
+        cartTotals.add(Math.round(totalBeforeTax * 100.0) / 100.0);
+
+        double estimatedTax = 0.10 * totalBeforeTax;
+        cartTotals.add(Math.round( estimatedTax * 100.0) / 100.0);
+
+        double orderTotal = estimatedTax + totalBeforeTax;
+        cartTotals.add(Math.round(orderTotal * 100.0) / 100.0);
+
+        return cartTotals;
+    }
     //get total count of items sitting in the cart
     public Integer cartCount() {
         List<Cart> carts = getCartItems();

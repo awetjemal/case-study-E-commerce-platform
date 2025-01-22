@@ -39,3 +39,38 @@ document.querySelectorAll('.delete-item-link').forEach((link) =>{
             });
     });
 });
+document.querySelectorAll('.add-to-cart-link').forEach((link) => {
+    link.addEventListener('click', () => {
+
+        const productId = link.dataset.productId;
+
+        let totalQuantity = 0;
+        // Data to be sent to the backend
+        const cartItem = {
+            productId: productId,
+            quantity: 1,
+            shippingOption: "Option1"
+        };
+
+        fetch("/cart/addToCart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(cartItem)
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                totalQuantity = data.totalQuantity;
+                console.log('Success:', data.totalQuantity);
+
+                cartQuantity.innerHTML = totalQuantity;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+    });
+
+});

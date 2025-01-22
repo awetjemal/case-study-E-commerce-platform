@@ -15,7 +15,8 @@ document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
 
         const cartItem = {
             productId: productId,
-            quantity: currentQuantity
+            quantity: currentQuantity,
+            shippingOption: "Option1"
         };
         let totalItemsInCart = 0;
         fetch("/cart/removeFromCart", {
@@ -32,9 +33,16 @@ document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
                 console.log('totalItemsInCart: ', data.totalItemsInCart);
                 console.log('Status: ', data.status);
                 console.log('message: ', data.message);
+                document.getElementById('ln-1').innerHTML = data.totalLine1;
+                document.getElementById('ln-2').innerHTML = data.totalLine2;
+                document.getElementById('ln-3').innerHTML = data.totalLine3;
+                document.getElementById('ln-4').innerHTML = data.totalLine4;
+                document.getElementById('ln-5').innerHTML = data.totalLine5;
+
 
                 if(data.status === "removed"){
                     cartQuantityC.innerHTML = totalItemsInCart;
+                    cartQuantituCK.innerHTML = totalItemsInCart;
                     cartQuantituCK.innerHTML = totalItemsInCart;
                     const containerList = document.querySelectorAll('.cart-item-container');
                     containerList.forEach((node) => {
@@ -51,6 +59,7 @@ document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
     });
 
 });
-// document.getElementById('bbb').addEventListener('click', ()=>{
-//     console.log("clicked the test button");
-// });
+
+document.querySelector('.place-order-button').addEventListener('click', ()=>{
+
+});

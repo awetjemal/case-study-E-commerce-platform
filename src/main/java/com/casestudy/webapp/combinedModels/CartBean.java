@@ -15,6 +15,7 @@ public class CartBean {
     private Integer quantity;
     private String productName;
     private String productImageUrl;
+    private String shippingOption;
     private Double productPrice;
 
 }
