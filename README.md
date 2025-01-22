@@ -1,10 +1,6 @@
 # case-study-E-commerce-platform
 My capstone project @ Per Scholas java full stack developer training
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> d82b1cd93b090aa7503a9b6632e117e59262e7e2
 E-Commerce Platform It is basically a web-based application in which users can buy products online. 
 Such an app should let users browse products, manage shopping carts, and make purchases. 
 This app can be built with excellent features such as – a UI displaying each section 
