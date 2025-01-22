@@ -40,9 +40,9 @@ public class Product {
                 this.keyWords = s;
             }
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Set<OrderDetail> orderDetails;
+//    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+//    private Set<OrderDetail> orderDetails;
 
 
 

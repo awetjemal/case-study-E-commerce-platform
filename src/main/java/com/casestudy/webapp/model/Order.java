@@ -22,11 +22,11 @@ public class Order {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "customer_id", nullable = false)
+//    private Customer customer;
 
-    @Column(name = "customer_id", insertable = false, updatable = false)
+    @Column(name = "customer_id")
     private Integer customerId;
 
     @Column(name = "order_date",  columnDefinition = "DATE")
@@ -41,8 +41,8 @@ public class Order {
     @Column(name = "shipped_date",  columnDefinition = "DATE")
     private Date shippedDate;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Set<OrderDetail> orderDetails;
+//    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+//    private Set<OrderDetail> orderDetails;
 
 }

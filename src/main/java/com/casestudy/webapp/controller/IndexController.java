@@ -2,11 +2,11 @@ package com.casestudy.webapp.controller;
 
 import com.casestudy.webapp.combinedModels.CartBean;
 import com.casestudy.webapp.model.Cart;
+import com.casestudy.webapp.model.Order;
+import com.casestudy.webapp.model.OrderDetail;
 import com.casestudy.webapp.model.Product;
 import com.casestudy.webapp.repository.CustomerRepository;
-import com.casestudy.webapp.service.CartService;
-import com.casestudy.webapp.service.ProductService;
-import com.casestudy.webapp.service.WishListService;
+import com.casestudy.webapp.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -27,8 +27,15 @@ public class IndexController {
     private CartService cartService;
     @Autowired
     private WishListService wishListService;
+
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
+
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private OrderDetailService orderDetailService;
+
 
     public IndexController(ProductService productService) {
         this.productService = productService;
@@ -77,6 +84,33 @@ public class IndexController {
     @GetMapping("home/cart")
     public String showCartPage(Model model){
         List<CartBean> cartBeans = cartService.getCartBeansInCart();
+        List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
+        List<Double> cartTotals = cartService.getCartTotals("Option1");
+        Integer cartCount = cartService.cartCount();
+        model.addAttribute("cartBeans", cartBeans);
+        model.addAttribute("cartCount", cartCount);
+        model.addAttribute("wishListedProducts", wishListedProducts);
+        model.addAttribute("cartTotals", cartTotals);
+
+        return "home/cart";
+    }
+    @GetMapping("home/placedOrder")
+    public String placedOrder(Model model) {
+        Integer customerId = customerService.getLoggedInCustomerId();
+        List<CartBean> cartBeans = cartService.getCartBeansInCart();
+        String message = "Order Placed Successfully, Thank you";
+        model.addAttribute("message", message);
+        //place order for the customer
+        Order order = orderService.addOrder(customerId);
+        Integer orderId = order.getId();
+        //add every item in the cart to the order-detail table and remove it from the cart
+        for (CartBean cartBean : cartBeans) {
+            OrderDetail addedOrderItem = orderDetailService.addOrderDetail(orderId, cartBean);
+            if (addedOrderItem != null) {
+                cartService.removeSingleItem(cartBean.getProductId());
+            }
+        }
+        cartBeans = cartService.getCartBeansInCart();
         List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
         List<Double> cartTotals = cartService.getCartTotals("Option1");
         Integer cartCount = cartService.cartCount();

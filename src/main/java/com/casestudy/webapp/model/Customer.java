@@ -48,9 +48,9 @@ public class Customer {
     @Column(name = "zip_code")
     private String zipCode;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Set<Order> orders;
+//    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+//    private Set<Order> orders;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)

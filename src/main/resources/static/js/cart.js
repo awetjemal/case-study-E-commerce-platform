@@ -60,6 +60,6 @@ document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
 
 });
 
-document.querySelector('.place-order-button').addEventListener('click', ()=>{
-
+document.getElementById('order-btn').addEventListener('click', ()=>{
+    location.reload();
 });

@@ -50,6 +50,9 @@
         Checkout (<a class="return-to-home-link "
                      href=""><span th:text="${cartCount}" id="cartQuantityCK"></span> items</a>)
     </div>
+    <h2 th:if="${message != null}"><span th:text="${message}"></span> </h2>
+
+<!--    <span th:unless="${wishListedProducts.contains(product.id)}"> <i class="bi bi-heart"></i> </span>-->
 </div>
 
 <main>
@@ -169,9 +172,13 @@
                     <div class="payment-summary-money">$<span th:text="${cartTotals.get(4)}" id="ln-5"></span></div>
                 </div>
 
-                <button class="place-order-button button-primary">
-                    Place your order
-                </button>
+
+                    <a th:href="@{/home/placedOrder}">
+                        <button class="place-order-button button-primary" id="order-btn">
+                            Place your order
+                        </button>
+                    </a>
+
             </div>
         </div>
     </div>
