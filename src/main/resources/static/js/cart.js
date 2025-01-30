@@ -1,6 +1,8 @@
 const cart = [];
 const cartQuantityC = document.querySelector('.js-cart-quantity');
 const cartQuantituCK = document.getElementById('cartQuantityCK');
+const cartQuantitySmall = document.getElementById('cartQuantityCK2');
+let totalItemsInCart = 0;
 document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
     link.addEventListener('click', () => {
         // console.log('clicked the delete link');
@@ -18,7 +20,7 @@ document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
             quantity: currentQuantity,
             shippingOption: "Option1"
         };
-        let totalItemsInCart = 0;
+
         fetch("/cart/removeFromCart", {
             method: "POST",
             headers: {
@@ -43,7 +45,7 @@ document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
                 if(data.status === "removed"){
                     cartQuantityC.innerHTML = totalItemsInCart;
                     cartQuantituCK.innerHTML = totalItemsInCart;
-                    cartQuantituCK.innerHTML = totalItemsInCart;
+                    cartQuantitySmall.innerHTML = totalItemsInCart;
                     const containerList = document.querySelectorAll('.cart-item-container');
                     containerList.forEach((node) => {
                         if (node.dataset.productId === productId) {
@@ -51,6 +53,7 @@ document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
                         }
                     });
                 }
+
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -60,6 +63,3 @@ document.querySelectorAll('.delete-quantity-link').forEach((link) =>{
 
 });
 
-document.getElementById('order-btn').addEventListener('click', ()=>{
-    location.reload();
-});

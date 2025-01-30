@@ -96,10 +96,16 @@ public class IndexController {
     }
     @GetMapping("home/placedOrder")
     public String placedOrder(Model model) {
+        List<Double> cartTotals = cartService.getCartTotals("Option1");
+        Integer cartCount = cartService.cartCount();
+
         Integer customerId = customerService.getLoggedInCustomerId();
         List<CartBean> cartBeans = cartService.getCartBeansInCart();
-        String message = "Order Placed Successfully, Thank you";
-        model.addAttribute("message", message);
+        if(cartCount > 0){
+            String message = "Order Placed Successfully, Thank you";
+            model.addAttribute("message", message);
+        }
+
         //place order for the customer
         Order order = orderService.addOrder(customerId);
         Integer orderId = order.getId();
@@ -112,8 +118,7 @@ public class IndexController {
         }
         cartBeans = cartService.getCartBeansInCart();
         List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();
-        List<Double> cartTotals = cartService.getCartTotals("Option1");
-        Integer cartCount = cartService.cartCount();
+
         model.addAttribute("cartBeans", cartBeans);
         model.addAttribute("cartCount", cartCount);
         model.addAttribute("wishListedProducts", wishListedProducts);
