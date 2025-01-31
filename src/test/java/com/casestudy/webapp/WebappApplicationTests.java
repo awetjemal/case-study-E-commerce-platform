@@ -1,5 +1,6 @@
 package com.casestudy.webapp;
 
+import com.casestudy.webapp.controller.IndexController;
 import com.casestudy.webapp.model.Product;
 import com.casestudy.webapp.repository.ProductRepository;
 import org.assertj.core.api.Assertions;
@@ -13,4 +14,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class WebappApplicationTests {
 
+    @Autowired
+    IndexController indexController;
+
+    @Test
+    public void contextLoads() {
+        Assertions.assertThat(indexController).isNotNull();
+    }
 }
