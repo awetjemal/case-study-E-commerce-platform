@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Created By CodingNepal -->
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Login Form Design | CodeLab</title>
@@ -12,17 +12,27 @@
     <div class="title">
         Login Form
     </div>
-    <form method = "POST" th:action="@{/login/login}" th:object="${loginForm}">
+    <form method = "POST" th:action="@{/login/login}" th:object="${loginFormBean}">
 <!--        <form method="post" th:action="@{/login/signUpForm}" th:object="${signUpForm}">-->
         <div class="field">
-            <input type="text" required th:field="*{username}">
+            <input type="text"  th:field="*{username}"> <br>
+            <div th:if="${bindingResult != null && bindingResult.hasFieldErrors('username')} " >
+                <p style="color: red">***Error - Email can not be empty</p>
+<!--                <span th:text="${bindingResult.getFieldError()}"></span>-->
+            </div>
+
             <label>Email Address</label>
         </div>
+        <br>
         <div class="field">
-            <input type="password" required th:field="*{password}">
+            <input type="password"  th:field="*{password}">
+            <div th:if="${bindingResult != null && bindingResult.hasFieldErrors('password')} " >
+                <p style="color: red">***Error - Invalid password</p>
+                <!--                <span th:text="${bindingResult.getFieldError()}"></span>-->
+            </div>
             <label>Password</label>
         </div>
-
+        <br>
         <div class="field">
             <input type="submit" value="Login">
         </div>

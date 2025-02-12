@@ -39,16 +39,21 @@ public class LoginController {
     // needs to match the spring security configuration  .loginPage method
     @GetMapping("/login/login")
     public String theLoginPage(Model model) {
-        model.addAttribute("loginForm", new LogInFormBean());
+        model.addAttribute("loginFormBean", new LogInFormBean());
         System.out.println("called loginPage");
 
         return "login/loginForm";
     }
     @PostMapping("/login/login")
-    public String theLoginPageSubmit(@Valid @ModelAttribute LogInFormBean user, BindingResult bindingResult,
+    public String theLoginPageSubmit(@Valid  LogInFormBean loginFormBean, BindingResult bindingResult,
                                      Model model, HttpSession session) {
+
+        LogInFormBean user = (LogInFormBean) loginFormBean;
+
         if (bindingResult.hasErrors()) {
-            model.addAttribute("loginForm", new LogInFormBean());
+            model.addAttribute("loginFormBean", loginFormBean);
+            model.addAttribute("bindingResult", bindingResult);
+
             return "login/loginForm";
         }
         else{
@@ -71,10 +76,15 @@ public class LoginController {
     }
 
     @PostMapping("/login/signUpForm")
-    public String signupSubmit(@Valid @ModelAttribute SignupFormBean signupFormBean, BindingResult bindingResult , Model model) {
-        model.addAttribute("signupFormBean", signupFormBean);
+    public String signupSubmit(@Valid  @ModelAttribute("signupFormBean") SignupFormBean signupFormBean, BindingResult bindingResult , Model model) {
+        model.addAttribute("signupFormBean", new SignupFormBean());
         //before adding a new customer to the database 1.confirm the two passwords are same 2. encrypt the password 3. validate email is unique
+//        System.out.println(signupFormBean.toString());
         if(bindingResult.hasErrors()) {
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("signUpFormBean", signupFormBean);
+            System.out.println("login has an error: " + bindingResult.getAllErrors());
+
             return "login/signUpForm";
         }
         if(signupFormBean.getFirstPassword().equals(signupFormBean.getSecondPassword())) {
@@ -102,7 +112,7 @@ public class LoginController {
             userRepository.save(user);
         }
 
-        return "/login/loginForm";
+        return "redirect:/login/login";
     }
     @GetMapping("/login/logoutForm")
     public String displayLogoutPage(HttpSession session) {

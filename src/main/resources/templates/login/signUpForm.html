@@ -13,13 +13,17 @@
     <div class="title">Registration</div>
     <div class="content">
         <!-- Registration form -->
-        <form method="post" th:action="@{/login/signUpForm}" th:object="${signUpForm}">
+        <form method="post" th:action="@{/login/signUpForm}" th:object="${signupFormBean}">
 <!--            <form th:action="@{/login/greeting}" th:object="${greeting}" method="post">    -->
             <div class="user-details">
                 <!-- Input for First Name -->
                 <div class="input-box">
                     <span class="details">First Name</span>
-                    <input type="text" placeholder="Enter your first name" required id="firstName" name="firstName" th:field="*{firstName}">
+                    <input type="text" placeholder="Enter your first name" id="firstName" name="firstName" th:field="*{firstName}">
+                    <div th:if="${bindingResult != null && bindingResult.hasFieldErrors('firstName')} " >
+                        <p style="color: red">***Error - First Name Invalid</p>
+                                        <span th:text="${bindingResult.getFieldError().getDefaultMessage()}"></span>
+                    </div>
                 </div>
                 <!-- Input for Last Name -->
                 <div class="input-box">

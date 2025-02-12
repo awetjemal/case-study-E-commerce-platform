@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
 //@TwoFieldsAreEqual(fieldOneName = "confirmPassword", fieldTwoName = "password", message = "Password and Conform Password must be the same.")
 public class SignupFormBean {
 
-    @Length(max = 50, message = "First name must be less than 50 characters.")
+    @Length(max = 4, message = "First name must be less than 5 characters.")
     @NotEmpty(message = "First Name is required.")
     private String firstName;
 
