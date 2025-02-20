@@ -70,14 +70,14 @@ public class LoginController {
 
     @GetMapping("/login/signUpForm")
     public String theSignupPage(Model model) {
-        model.addAttribute("signUpForm", new SignupFormBean());
+        model.addAttribute("signUpFormBean", new SignupFormBean());
 
         return "login/signUpForm";
     }
 
     @PostMapping("/login/signUpForm")
     public String signupSubmit(@Valid  @ModelAttribute("signupFormBean") SignupFormBean signupFormBean, BindingResult bindingResult , Model model) {
-        model.addAttribute("signupFormBean", new SignupFormBean());
+        model.addAttribute("signUpFormBean", new SignupFormBean());
         //before adding a new customer to the database 1.confirm the two passwords are same 2. encrypt the password 3. validate email is unique
 //        System.out.println(signupFormBean.toString());
         if(bindingResult.hasErrors()) {
