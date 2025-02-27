@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <!-- these 2 lines are needed to bring in bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<style>
+    .product-container{
+        border: 1px solid black;
+    }
+</style>
+<body>
+<div class="header">
+    <h1 class=" text-center mt-4  " >Manage Products in the platform</h1>
+    <nav>
+        <ul>
+            <li class=""> <a th:href="@{admin}">Admin</a> </li>
+            <li class=""> <a th:href="@{products}">PRODUCTS</a> </li>
+            <li class=""> <a th:href="@{customers}">CUSTOMERS</a>  </li>
+       </ul>
+    </nav>
+</div>
+<h1>Products page to add , view , edit and delete products </h1>
+
+<div class="main">
+    <!-- Button trigger modal -->
+
+    <div style="">
+        <button class="add-to-cart-button button-primary" style="font-size: 1.5rem" data-bs-toggle="modal" data-bs-target="#addProduct">
+            Add new Product +
+        </button>
+    </div>
+    <div class="products-grid js-products-grid">
+        <div class="product-container" th:each="product : ${products}" >
+
+            <div class="product-image-container">
+                <img class="product-image" th:src="@{${'../'+product.imageUrl}}" alt="alt">
+                <!--        <span th:text = "${product.imageUrl}"> </span>-->
+            </div>
+
+            <div class="product-name limit-text-to-2-lines" th:text="${product.name}" >
+
+            </div>
+            <div class="product-price" th:text="${'Price: $' + product.price}">
+
+            </div>
+
+            <div class="product-spacer"></div>
+
+            <button class="add-to-cart-button button-primary js-edit-product"
+                    data-product-id="${product.id}" th:attr = "data-product-id=${product.id}"
+                    data-bs-toggle="modal" data-bs-target="#editProduct">
+                Edit Product
+            </button>
+            <button class="add-to-cart-button button-primary js-delete-product"
+                    data-product-id="${product.id}" th:attr = "data-product-id=${product.id}"
+                    style="margin-top: 5px;">
+                Delete Product
+            </button>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" >Enter Details for the product you want to add to the database</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!--  display a form for adding product -->
+                <form action="">
+                    <div class="mb-3">
+                        <label for="Product-Name" class="form-label">Product Name:</label>
+                        <input type="text" class="form-control" id="Product-Name" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="Product-Price" class="form-label">Product Price:</label>
+                        <input type="text" class="form-control" id="Product-Price" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="Key-Words" class="form-label">Key Words:</label>
+                        <input type="text" class="form-control" id="Key-Words" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="Image-URL" class="form-label">Image URL:</label>
+                        <input type="text" class="form-control" id="Image-URL" placeholder="">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Choose Product Image to upload (Optional if Image URL not available) </label>
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" >Enter Details of the product you want to Edit</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!--  display a form for adding product -->
+                <form action="">
+                    <div class="mb-3">
+                        <label for="Product-Name" class="form-label">Product Name:</label>
+                        <input type="text" class="form-control" id="Product-Name-e" >
+                    </div>
+                    <div class="mb-1">
+                        <label for="Product-Price" class="form-label">Product Price:</label>
+                        <input type="text" class="form-control" id="Product-Price-e" value="testing default value @ price">
+                    </div>
+                    <div class="mb-1">
+                        <label for="Key-Words" class="form-label">Key Words:</label>
+                        <input type="text" class="form-control" id="Key-Words-e" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="Image-URL" class="form-label">Image URL:</label>
+                        <input type="text" class="form-control" id="Image-URL-e" placeholder="">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Choose Product Image to upload (Optional if Image URL not available) </label>
+                        <input class="form-control" type="file" id="formFile-e">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/admin/products}"></script>
+</body>
+</html>

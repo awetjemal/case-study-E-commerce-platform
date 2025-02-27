@@ -14,15 +14,17 @@
     <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
-<div class="header">
-    <h1>Admin page for managing the E-commerce platform</h1>
-</div>
+<!--<div class="header">-->
+<!--    <h1>Admin page for managing the E-commerce platform</h1>-->
+<!--</div>-->
 <div class="header">
     <h1 class=" text-center mt-4  " >E-Commerce Platform Admin Page</h1>
     <nav>
         <ul>
-            <li class=""> <a href="cart.html">CUSTOMERS</a>  </li>
-            <li class=""> <a href="wishlist.html">PRODUCTS</a> </li>
+            <li class=""> <a th:href="@{admin}">Admin</a> </li>
+            <li class=""> <a th:href="@{products}">PRODUCTS</a> </li>
+            <li class=""> <a th:href="@{customers}">CUSTOMERS</a>  </li>
+
 
         </ul>
     </nav>

@@ -181,7 +181,7 @@ nav a {
 
 .add-to-cart-button {
     width: 100%;
-    padding: 8px;
+    padding: 4px;
     border-radius: 50px;
 }
 .limit-text-to-2-lines {
@@ -219,7 +219,7 @@ nav a {
 .button-primary {
     color: rgb(33, 33, 33);
     background-color: rgb(255, 216, 20);
-    border: 1px solid rgb(252, 210, 0);
+    border: 1px solid rgb(47, 53, 55);
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);

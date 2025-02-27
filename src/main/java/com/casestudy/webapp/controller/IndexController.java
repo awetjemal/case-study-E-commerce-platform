@@ -71,6 +71,10 @@ public class IndexController {
 
         return "home/history";
     }
+    @GetMapping("home/test")
+    public String showHomeTest(Model model) {
+        return "home/test";
+    }
     @GetMapping("home/wishlist")
     public String showWishlistPage(Model model){
         List<Product> wishListedProducts = wishListService.getAllProductsInWishlist();

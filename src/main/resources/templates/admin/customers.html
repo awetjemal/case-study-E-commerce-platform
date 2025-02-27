@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<div class="header">
+    <h1 class=" text-center mt-4  " >Manage Customers...</h1>
+    <nav>
+        <ul>
+            <li class=""> <a th:href="@{admin}">Admin</a> </li>
+            <li class=""> <a th:href="@{products}">PRODUCTS</a> </li>
+            <li class=""> <a th:href="@{customers}">CUSTOMERS</a>  </li>
+
+
+        </ul>
+    </nav>
+</div>
+<h1>Customers page for performing CRUD operations on the customers</h1>
+
+<script type="text/javascript" th:src="@{/js/admin/customers}"></script>
+</body>
+</html>
