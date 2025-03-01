@@ -42,29 +42,31 @@
         <div class="product-container" th:each="product : ${products}" >
 
             <div class="product-image-container">
-                <img class="product-image" th:src="@{${'../'+product.imageUrl}}" alt="alt">
+                <img class="product-image" th:src="@{${'../'+product.imageUrl}}" th:attr = "data-product-id=${product.id}">
                 <!--        <span th:text = "${product.imageUrl}"> </span>-->
             </div>
 
-            <div class="product-name limit-text-to-2-lines" th:text="${product.name}" >
+            <div class="product-name limit-text-to-2-lines" th:text="${product.name}" th:attr = "data-product-id=${product.id}">
 
             </div>
-            <div class="product-keywords limit-text-to-2-lines" th:text="${'#' + product.keyWords}" >
+            <div class="product-keywords limit-text-to-2-lines" th:text="${'#' + product.keyWords}" th:attr = "data-product-id=${product.id}">
 
             </div>
-            <div class="product-price" th:text="${'Price: $' + product.price}">
-
+<!--            -->
+            <div class="product-price"  th:attr = "data-product-id=${product.id}">
+                <span>Price:$</span> <span class="product-price-inner" th:text="${product.price}"th:attr = "data-product-id=${product.id}"></span>
             </div>
 
             <div class="product-spacer"></div>
 
             <button class="add-to-cart-button button-primary js-edit-product"
-                    data-product-id="${product.id}" th:attr = "data-product-id=${product.id}"
+                     th:attr = "data-product-id=${product.id}"
+                    th:with = "p = '${product}'"
                     data-bs-toggle="modal" data-bs-target="#editProduct">
                 Edit Product
             </button>
             <button class="add-to-cart-button button-primary js-delete-product"
-                    data-product-id="${product.id}" th:attr = "data-product-id=${product.id}"
+                    th:attr = "data-product-id=${product.id}"
                     style="margin-top: 5px;">
                 Delete Product
             </button>
@@ -129,11 +131,12 @@
                 <form action="">
                     <div class="mb-3">
                         <label for="Product-Name" class="form-label">Product Name:</label>
-                        <input type="text" class="form-control" id="Product-Name-e" th:attr = "value=${product.name}">
+                        <input type="text" class="form-control" id="Product-Name-e" >
                     </div>
                     <div class="mb-1">
                         <label for="Product-Price" class="form-label">Product Price:</label>
-                        <input type="text" class="form-control" id="Product-Price-e" th:attr = "value=${product.price}">
+<!--                        th:attr="value=#{subscribe.submit}"/th:attr="value = ${p.price}"-->
+                        <input type="text" class="form-control" id="Product-Price-e" >
                     </div>
                     <div class="mb-1">
                         <label for="Key-Words" class="form-label">Key Words:</label>
@@ -157,6 +160,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" th:src="@{/js/admin/products}"></script>
+<script type="text/javascript" th:src="@{/js/admin/products.js}"></script>
 </body>
 </html>
