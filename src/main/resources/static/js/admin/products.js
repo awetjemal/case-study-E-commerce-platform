@@ -22,6 +22,7 @@ editButtons.forEach((btn) =>{
        document.getElementById('Product-Price-e').setAttribute('value', price);
        document.getElementById('Key-Words-e').setAttribute('value', keyWords);
        document.getElementById('Image-URL-e').setAttribute('value', imageUrl);
+       document.getElementById('image-edit').setAttribute('src', imageUrl);
 
    });
 });
