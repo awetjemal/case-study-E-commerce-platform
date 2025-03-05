@@ -1,6 +1,8 @@
 package com.casestudy.webapp.controller;
 
+import com.casestudy.webapp.model.Customer;
 import com.casestudy.webapp.model.Product;
+import com.casestudy.webapp.service.CustomerService;
 import com.casestudy.webapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import java.util.List;
 public class AdminController {
     @Autowired
     ProductService  productService;
+    @Autowired
+    CustomerService customerService;
 
     @GetMapping("admin/admin")
     public String adminMainPage() {
@@ -20,7 +24,10 @@ public class AdminController {
     }
 
     @GetMapping("admin/customers")
-    public String customerMainPage() {
+    public String showCustomers(Model model) {
+        List<Customer> customers = customerService.getAllCustomers();
+        model.addAttribute("customers", customers);
+        System.out.println("customers list size is: " + customers.size());
         return "admin/customers";
     }
 

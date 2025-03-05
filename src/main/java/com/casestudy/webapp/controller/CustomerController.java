@@ -16,6 +16,15 @@ import java.util.List;
 @Controller
 public class CustomerController {
 
+//    @Autowired
+//    CustomerService customerService;
 
+//    @GetMapping("admin/customers")
+//    public String showCustomers(Model model) {
+//        List<Customer> customers = customerService.getAllCustomers();
+//        model.addAttribute("customers", customers);
+//        System.out.println("customers list size is: " + customers.size());
+//        return "admin/customers";
+//    }
 
 }

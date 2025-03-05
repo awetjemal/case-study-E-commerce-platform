@@ -8,6 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
     @Autowired
@@ -18,5 +20,9 @@ public class CustomerService {
 //        System.out.println("Current auth.getName(): " + auth.getName()); // => returns username/email
         Customer customer = customerRepository.findByEmail(auth.getName());
         return customer.getId();
+    }
+
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
     }
 }
