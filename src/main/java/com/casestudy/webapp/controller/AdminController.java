@@ -27,7 +27,6 @@ public class AdminController {
     public String showCustomers(Model model) {
         List<Customer> customers = customerService.getAllCustomers();
         model.addAttribute("customers", customers);
-        System.out.println("customers list size is: " + customers.size());
         return "admin/customers";
     }
 
