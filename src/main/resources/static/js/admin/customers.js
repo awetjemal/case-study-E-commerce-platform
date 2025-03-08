@@ -12,10 +12,15 @@ editButtons.forEach((btn) =>{
         document.getElementById('city').setAttribute('value', getCityById(customerId));
         document.getElementById('state').setAttribute('value', getStateById(customerId));
         document.getElementById('zipCode').setAttribute('value', getZipCodeById(customerId));
+        document.getElementById('save-customer-changes').setAttribute('data-customer-id', customerId);
     });
     // console.log('Each single button element: ' + btn.outerHTML);
 });
-
+const submitButton = document.getElementById('save-customer-changes');
+submitButton.addEventListener('click', ()=>{
+    console.log('Customer ID: ' + submitButton.dataset.customerId);
+    console.log('clicked - form submit button: ' + submitButton.outerHTML);
+});
 function getFirstNameById(id){
     let val;
     document.querySelectorAll('.firstName-field').forEach((field) =>{
