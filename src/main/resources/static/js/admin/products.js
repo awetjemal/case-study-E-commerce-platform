@@ -6,6 +6,19 @@ const pNames = document.querySelectorAll('.product-name');
 const pKeywords = document.querySelectorAll('.product-keywords');
 const pPrices = document.querySelectorAll('.product-price-inner');
 
+document.getElementById('add-product-btn').addEventListener('click', () => {
+    const pName = document.getElementById('Product-Name');
+    const pPrice = document.getElementById('Product-Price');
+    const pKeyWords = document.getElementById('Key-Words');
+    const pImageUrl = document.getElementById('Image-URL');
+
+    console.log(pName.value + '\n' + pPrice.value + '\n' + pKeyWords.value + '\n' + pImageUrl.value );
+    //send to backend -> database those entries 
+    pName.value = '';
+    pPrice.value = '';
+    pKeyWords.value = '';
+    pImageUrl.value = '';
+});
 editButtons.forEach((btn) =>{
    btn.addEventListener('click', ()=>{
        const productId = btn.dataset.productId;

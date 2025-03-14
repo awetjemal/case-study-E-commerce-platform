@@ -34,7 +34,8 @@
     <!-- Button trigger modal -->
 
     <div style="">
-        <button class="add-to-cart-button button-primary" style="font-size: 1.5rem" data-bs-toggle="modal" data-bs-target="#addProduct">
+        <button class="add-to-cart-button button-primary"
+                style="font-size: 1.5rem" data-bs-toggle="modal" data-bs-target="#addProduct">
             Add new Product +
         </button>
     </div>
@@ -109,12 +110,12 @@
                         <label for="formFile" class="form-label">Choose Product Image to upload (Optional if Image URL not available) </label>
                         <input class="form-control" type="file" id="formFile">
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="add-product-btn" >Add Product</button>
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add Product</button>
-            </div>
+
         </div>
     </div>
 </div>
