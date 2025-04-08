@@ -33,6 +33,9 @@ public class Product {
     @Column(name = "key_words")
     private String keyWords;
 
+//    		public Product() {
+//
+//    		}
             public Product(String imageUrl, String name, double v, String s) {
                 this.imageUrl = imageUrl;
                 this.name = name;
