@@ -13,7 +13,22 @@ document.getElementById('add-product-btn').addEventListener('click', () => {
     const pImageUrl = document.getElementById('Image-URL');
 
     console.log(pName.value + '\n' + pPrice.value + '\n' + pKeyWords.value + '\n' + pImageUrl.value );
-    //send to backend -> database those entries 
+    //send to backend -> database those entries
+    const newProduct = {
+        pName: pName.value,
+        pPrice: pPrice.value,
+        pKeyWords: pKeyWords.value,
+        pImageUrl: pImageUrl.value
+    };
+    if(pName.value !== '' && pPrice.value !== "" && pKeyWords.value !== '' && pImageUrl.value !== ''){
+        fetch("/admin/addProduct", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newProduct)
+        })
+    }
     pName.value = '';
     pPrice.value = '';
     pKeyWords.value = '';
